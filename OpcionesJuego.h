@@ -20,7 +20,7 @@
 #include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <string.h>
 
 using namespace std;
 
@@ -37,6 +37,9 @@ public:
     void movimientoColumnas(Carta*&, Carta*&, Carta*&, Carta*&, int, bool, Pilas*, Carta*&, ListasDobles*);
     void moverColumnaAPFinal(Carta*&, Carta*&, Carta*&, Pilas*);
     void moverPFinalAColumna(Carta*&, Carta*&, Carta*&, ListasDobles*, Pilas*);
+    void obtenerAnteriorSiguiente(Carta*&, Carta*&, char);
+    void obtenerSiguienteCola(Carta*&, Carta*&);
+    void obtenerSiguienteCola2(Carta*&, Carta*&);
     
     virtual ~OpcionesJuego();
 private:

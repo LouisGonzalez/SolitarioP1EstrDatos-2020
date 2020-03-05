@@ -47,5 +47,13 @@ Pilas::Pilas(const Pilas& orig) {
 }
 
 Pilas::~Pilas() {
+    Carta *aux = new Carta();
+    Carta *aux2 = NULL;
+    aux = pila;
+    while(aux != NULL){
+        aux2 = aux;
+        aux = aux->Get_siguiente();
+        delete aux2;
+    }
 }
 

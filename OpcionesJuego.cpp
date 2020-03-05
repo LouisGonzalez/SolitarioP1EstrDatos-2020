@@ -17,6 +17,9 @@
 #include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+
+using namespace std;
 
 OpcionesJuego::OpcionesJuego() {
 }
@@ -120,7 +123,7 @@ void OpcionesJuego::deReservaAMesa(Carta *&frente2, Carta *&fin2, Carta *&primer
             }
         }
     } else {
-        cout<< "No hay cartas dentro del mazo para mover."<<endl;
+        cout << "No hay cartas dentro del mazo para mover." << endl;
     }
 }
 
@@ -265,7 +268,7 @@ void OpcionesJuego::moverColumnaAColumna(Carta *&frente, Carta *&fin, Carta *&fr
                     cout << "No es posible este movimiento" << endl;
                 }
             } else {
-                cout << "No es posible este movimiento" << endl;
+                cout << "No es posible este movimientoPPPP" << endl;
             }
         }
     } else {
@@ -404,6 +407,85 @@ void OpcionesJuego::moverPFinalAColumna(Carta *&frente, Carta *&fin, Carta *&fre
         }
     } else {
         cout << "No hay cartas dentro de este mazo." << endl;
+    }
+}
+
+void OpcionesJuego::obtenerAnteriorSiguiente(Carta *&primero, Carta *&ultimo, char noCarta) {
+    bool comprobacion = true;
+    int noCartaConv = (int)noCarta - 48;
+    string dato;
+    string datos[noCartaConv+1];
+    if (primero != NULL) {
+        Carta *aux = ultimo;
+        if(primero == ultimo){
+            datos[0] = aux->Get_dato();
+            cout<<"Este mazo solo tiene una carta y es: "<<datos[0]<<endl;
+        } else {
+            int cont = 0;
+            for (int i = 0; i < noCartaConv + 1; i++) {
+                Carta *aux2 = aux;
+                if (aux2 == NULL) {
+                    comprobacion = false;
+                    break;
+                }
+                dato = aux->Get_dato();
+                datos[i] = dato;
+                aux = aux->Get_anterior();
+                cont++;
+            }
+        if(noCartaConv > 1){
+            if (comprobacion == true) {
+                cout << "La carta siguiente es " << datos[noCartaConv] << endl;
+                cout << "La carta que indicas es " << datos[noCartaConv - 1] << endl;
+               cout << "La carta anterior es " << datos[noCartaConv - 2] << endl;
+             } else {
+                if(cont == noCartaConv){
+                    cout<<"La carta que indicas es "<< datos[noCartaConv - 1] << endl;
+                    cout<<"La carta anterior es "<< datos[noCartaConv - 2] <<endl;
+                } else {
+                    cout << "El numero de carta que buscas no existe dentro del mazo." << endl;
+                }
+            }
+        } else {
+            if(comprobacion == true){
+                cout << "La carta siguiente es " << datos[noCartaConv] << endl;
+                cout << "La carta que indicas es " << datos[noCartaConv - 1] << endl;
+            } else {
+                cout << "El numero de carta que buscas no existe dentro del mazo." << endl;
+            }
+        }
+    }
+    } else {
+        cout << "No hay cartas dentro del mazo que indicas." << endl;
+    }
+}
+
+void OpcionesJuego::obtenerSiguienteCola(Carta *&frente, Carta *&fin){
+    if(frente!=NULL){
+        Carta *aux = frente;
+        if(aux->Get_siguiente()!= NULL){
+            cout<<"La carta siguiente es: "<<aux->Get_siguiente()->Get_dato()<<endl;
+            cout<<"La carta actual es: "<<aux->Get_dato()<<endl;
+        } else {
+            cout<<"La carta actual es: "<<aux->Get_dato()<<endl;
+            
+        }
+    } else {
+        cout<<"No hay cartas dentro del mazo."<<endl;
+    }
+}
+
+void OpcionesJuego::obtenerSiguienteCola2(Carta *&frente, Carta *&fin){
+    if(frente!=NULL){
+        Carta *aux = fin;
+        if(aux->Get_anterior() != NULL){
+            cout<<"La carta anterior es: "<<aux->Get_anterior()->Get_dato()<<endl;
+            cout<<"La carta actual es: "<<aux->Get_dato()<<endl;
+        } else {
+            cout << "La carta actual es: "<<aux->Get_dato()<<endl;
+        }
+    } else {
+        cout<<"No hay cartas dentro del mazo."<<endl;
     }
 }
 

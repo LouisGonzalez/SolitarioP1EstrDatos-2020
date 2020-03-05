@@ -56,9 +56,33 @@ build: .build-post
 .build-pre:
 # Add your pre 'build' code here...
 
-.build-post: .build-impl
+.build-post: .build-impl main.o BarajaInicial.o Carta.o CartasPantalla.o Cola.o ListasDobles.o OpcionesJuego.o Pilas.o 
 # Add your post 'build' code here...
+	g++ main.o BarajaInicial.o Carta.o CartasPantalla.o Cola.o ListasDobles.o OpcionesJuego.o Pilas.o -o Juego
 
+main.o: main.cpp 
+	g++ -c main.cpp
+
+BarajaInicial.o: BarajaInicial.cpp BarajaInicial.h
+	g++ -c BarajaInicial.cpp
+
+Carta.o: Carta.cpp Carta.h
+	g++ -c Carta.cpp
+
+CartasPantalla.o: CartasPantalla.cpp CartasPantalla.h
+	g++ -c CartasPantalla.cpp
+
+Cola.o: Cola.cpp Cola.h
+	g++ -c Cola.cpp
+
+ListasDobles.o: ListasDobles.cpp ListasDobles.h
+	g++ -c ListasDobles.cpp
+
+OpcionesJuego.o: OpcionesJuego.cpp OpcionesJuego.h
+	g++ -c OpcionesJuego.cpp
+
+Pilas.o: Pilas.cpp Pilas.h
+	g++ -c Pilas.cpp
 
 # clean
 clean: .clean-post
@@ -68,7 +92,7 @@ clean: .clean-post
 
 .clean-post: .clean-impl
 # Add your post 'clean' code here...
-
+	rm -rf *o Juego
 
 # clobber
 clobber: .clobber-post
@@ -78,7 +102,6 @@ clobber: .clobber-post
 
 .clobber-post: .clobber-impl
 # Add your post 'clobber' code here...
-
 
 # all
 all: .all-post

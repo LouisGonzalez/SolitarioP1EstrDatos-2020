@@ -73,25 +73,81 @@ int main() {
             aux->Set_numero(i);
             ss << i;
             ss>>convertido;
-            aux->Set_dato(convertido + " ♠");
+            if(convertido == "1"){
+                aux->Set_dato("A ♠");
+                
+            } else if(convertido == "11"){
+                aux->Set_dato("J ♠");
+            
+            } else if(convertido == "12"){
+                aux->Set_dato("Q ♠");
+            
+            } else if(convertido ==  "13"){
+                aux->Set_dato("K ♠");
+            
+            } else {
+                aux->Set_dato(convertido + " ♠");
+            }
             aux->Set_simbolo("Pica");
         } else if (x == 2) {
             aux->Set_numero(i - 13);
             ss << i - 13;
             ss>>convertido;
-            aux->Set_dato(convertido + " ♥");
+            if(convertido == "1"){
+                aux->Set_dato("A ♥");
+                
+            } else if(convertido ==  "11"){
+                aux->Set_dato("J ♥");
+            
+            } else if(convertido == "12"){
+                aux->Set_dato("Q ♥");
+            
+            } else if(convertido == "13"){
+                aux->Set_dato("K ♥");
+            
+            } else {
+                aux->Set_dato(convertido + " ♥");
+            }
             aux->Set_simbolo("Corazon");
         } else if (x == 3) {
             aux->Set_numero(i - 26);
             ss << i - 26;
             ss>>convertido;
-            aux->Set_dato(convertido + " ♦");
+            if(convertido == "1"){
+                aux->Set_dato("A ♦");
+                
+            } else if(convertido == "11"){
+                aux->Set_dato("J ♦");
+            
+            } else if(convertido ==  "12"){
+                aux->Set_dato("Q ♦");
+            
+            } else if(convertido == "13"){
+                aux->Set_dato("K ♦");
+            
+            } else {
+                aux->Set_dato(convertido + " ♦");
+            }
             aux->Set_simbolo("Diamante");
         } else if (x == 4) {
             aux->Set_numero(i - 39);
             ss << i - 39;
             ss>>convertido;
-            aux->Set_dato(convertido + " ♣");
+            if(convertido == "1"){
+                aux->Set_dato("A ♣");
+                
+            } else if(convertido == "11"){
+                aux->Set_dato("J ♣");
+            
+            } else if(convertido ==  "12"){
+                aux->Set_dato("Q ♣");
+            
+            } else if(convertido == "13"){
+                aux->Set_dato("K ♣");
+            
+            } else {
+                aux->Set_dato(convertido + " ♣");
+            }
             aux->Set_simbolo("Trebol");
         }
         baraja->Agregar(aux);
@@ -167,7 +223,7 @@ int main() {
             }
         }
         printf("\n\n");
-        cout<<"1.     2.        3.           4.              5.                 6.                    7."<<endl;
+        cout << "1.     2.        3.           4.              5.                 6.                    7." << endl;
         printf("\n");
         for (int j = 0; j < 19; j++) {
             for (int i = 0; i < 7; i++) {
@@ -197,7 +253,7 @@ int main() {
             }
             printf("\n");
         }
-        cout<<"Jugadas: "<<jugadas<<endl;
+        cout << "Jugadas: " << jugadas << endl;
         printf("\n");
         cout << "Seleccione cualquiera de los siguientes movimientos: " << endl;
         cout << "1.Jalar una carta de la mano de reserva." << endl;
@@ -205,6 +261,8 @@ int main() {
         cout << "3.Mover de una columna a otra." << endl;
         cout << "4.Mover de una columna a alguna de las columnas finales." << endl;
         cout << "5.Mover de una columna final a alguna columna del juego." << endl;
+        cout << "6. Saber el siguiente o anterior de alguna carta del juego." << endl;
+        cout << "7. Rendirse." << endl;
         cin>>opcionesMenu;
         switch (opcionesMenu) {
             case '1':
@@ -242,6 +300,7 @@ int main() {
                         break;
                     default:
                         cout << "Has ingresado una opcion invalida" << endl;
+                        jugadas--;
                         break;
                 }
                 break;
@@ -283,6 +342,7 @@ int main() {
                                     break;
                                 default:
                                     cout << "Has ingresado una opcion invalida." << endl;
+                                    jugadas--;
                                     break;
                             }
                             break;
@@ -311,6 +371,7 @@ int main() {
                                     break;
                                 default:
                                     cout << "Has ingresado una opcion invalida." << endl;
+                                    jugadas--;
                                     break;
                             }
                             break;
@@ -340,6 +401,7 @@ int main() {
                                     break;
                                 default:
                                     cout << "Has ingresado una opcion invalida." << endl;
+                                    jugadas--;
                                     break;
                             }
                             break;
@@ -368,6 +430,7 @@ int main() {
                                     break;
                                 default:
                                     cout << "Has ingresado una opcion invalida." << endl;
+                                    jugadas--;
                                     break;
                             }
                             break;
@@ -396,6 +459,7 @@ int main() {
                                     break;
                                 default:
                                     cout << "Has ingresado una opcion invalida." << endl;
+                                    jugadas--;
                                     break;
                             }
                             break;
@@ -424,6 +488,7 @@ int main() {
                                     break;
                                 default:
                                     cout << "Has ingresado una opcion invalida." << endl;
+                                    jugadas--;
                                     break;
                             }
                             break;
@@ -452,15 +517,18 @@ int main() {
                                     break;
                                 default:
                                     cout << "Has ingresado una opcion invalida." << endl;
+                                    jugadas--;
                                     break;
                             }
                             break;
                         default:
                             cout << "Has ingresado una opcion invalida." << endl;
+                            jugadas--;
                             break;
                     }
                 } else {
                     cout << "No es posible mover cartas de una columna a si misma." << endl;
+                    jugadas--;
                 }
 
                 break;
@@ -487,6 +555,7 @@ int main() {
                                 break;
                             default:
                                 cout << "Numero de pila invalido." << endl;
+                                jugadas--;
                                 break;
                         }
                         break;
@@ -506,6 +575,7 @@ int main() {
                                 break;
                             default:
                                 cout << "Numero de pila invalido." << endl;
+                                jugadas--;
                                 break;
                         }
                         break;
@@ -525,6 +595,7 @@ int main() {
                                 break;
                             default:
                                 cout << "Numero de pila invalido." << endl;
+                                jugadas--;
                                 break;
                         }
                         break;
@@ -544,6 +615,7 @@ int main() {
                                 break;
                             default:
                                 cout << "Numero de pila invalido." << endl;
+                                jugadas--;
                                 break;
                         }
                         break;
@@ -566,6 +638,7 @@ int main() {
                                 break;
                             default:
                                 cout << "Numero de pila invalido." << endl;
+                                jugadas--;
                                 break;
                         }
                         break;
@@ -585,6 +658,7 @@ int main() {
                                 break;
                             default:
                                 cout << "Numero de pila invalido." << endl;
+                                jugadas--;
                                 break;
                         }
                         break;
@@ -604,11 +678,13 @@ int main() {
                                 break;
                             default:
                                 cout << "Numero de pila invalido." << endl;
+                                jugadas--;
                                 break;
                         }
                         break;
                     default:
                         cout << "Numero de columna invalido." << endl;
+                        jugadas--;
                         break;
                 }
                 break;
@@ -650,6 +726,7 @@ int main() {
                                 break;
                             default:
                                 cout << "Numero de columna invalido." << endl;
+                                jugadas--;
                                 break;
                         }
                         break;
@@ -684,6 +761,7 @@ int main() {
                                 break;
                             default:
                                 cout << "Numero de columna invalido." << endl;
+                                jugadas--;
                                 break;
                         }
                         break;
@@ -718,6 +796,7 @@ int main() {
                                 break;
                             default:
                                 cout << "Numero de columna invalido." << endl;
+                                jugadas--;
                                 break;
                         }
 
@@ -753,28 +832,97 @@ int main() {
                                 break;
                             default:
                                 cout << "Numero de columna invalido." << endl;
+                                jugadas--;
                                 break;
                         }
-
                         break;
                     default:
                         cout << "Numero de pila invalido." << endl;
+                        jugadas--;
                         break;
                 }
+                break;
+            case '6':
+                char eleccion;
+                cout << "Eliga donde desea hacer su revision: " << endl;
+                cout << "1. Columnas del juego." << endl;
+                cout << "2. Mazo de 24 cartas." << endl;
+                cout << "3. 2do mazo de 24 cartas." << endl;
+                cin>>eleccion;
+                if (eleccion == '1') {
+                    char columnaConsulta, cartaConsulta;
+                    cout << "No. columna: " << endl;
+                    cin>>columnaConsulta;
+                    cout << "No. carta: " << endl;
+                    cin>>cartaConsulta;
+                    switch (columnaConsulta) {
+                        case '1':
+                            opciones->obtenerAnteriorSiguiente(primero1, ultimo1, cartaConsulta);
+                            break;
+                        case '2':
+                            opciones->obtenerAnteriorSiguiente(primero2, ultimo2, cartaConsulta);
 
+                            break;
+                        case '3':
+                            opciones->obtenerAnteriorSiguiente(primero3, ultimo3, cartaConsulta);
 
+                            break;
+                        case '4':
+                            opciones->obtenerAnteriorSiguiente(primero4, ultimo4, cartaConsulta);
 
+                            break;
+                        case '5':
+                            opciones->obtenerAnteriorSiguiente(primero5, ultimo5, cartaConsulta);
 
+                            break;
+                        case '6':
+                            opciones->obtenerAnteriorSiguiente(primero6, ultimo6, cartaConsulta);
 
+                            break;
+                        case '7':
+                            opciones->obtenerAnteriorSiguiente(primero7, ultimo7, cartaConsulta);
+                            break;
+                    }
+                } else if (eleccion == '2') {
+                    opciones->obtenerSiguienteCola(frente, fin);
+                } else if (eleccion == '3'){
+                    opciones->obtenerSiguienteCola2(frente2, fin2);
+                }
+                break;
+            case '7':
+                pilaPicas->~Pilas();
+                pilaDiamantes->~Pilas();
+                pilaTreboles->~Pilas();
+                pilaCorazones->~Pilas();
+                cout << "Juego finalizado, has realizado un total de " << jugadas << " movimientos" << endl;
+                lista1->~ListasDobles();
+                lista2->~ListasDobles();
+                lista3->~ListasDobles();
+                lista4->~ListasDobles();
+                lista5->~ListasDobles();
+                lista6->~ListasDobles();
+                lista7->~ListasDobles();
                 break;
             default:
                 cout << "Opcion invalida, porfavor intente denuevo" << endl;
+                jugadas--;
         }
         jugadas++;
-        system("sleep 1");
+        system("sleep 2");
         system("clear");
     }
-    cout<<"Juego finalizado, has ganado con "<<jugadas<<" movimientos"<<endl;
+    cout << "Juego finalizado, has ganado con " << jugadas << " movimientos" << endl;
+    pilaPicas->~Pilas();
+    pilaDiamantes->~Pilas();
+    pilaTreboles->~Pilas();
+    pilaCorazones->~Pilas();
+    lista1->~ListasDobles();
+    lista2->~ListasDobles();
+    lista3->~ListasDobles();
+    lista4->~ListasDobles();
+    lista5->~ListasDobles();
+    lista6->~ListasDobles();
+    lista7->~ListasDobles();
     return 0;
 }
 

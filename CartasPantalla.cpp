@@ -36,10 +36,10 @@ void CartasPantalla::mostrarTablero1(Carta *&frente, Carta *&fin, Carta *actual,
         temp = frente;
         while (temp != NULL) {
             if (temp == frente) {
-                if (temp->Get_numero() > 9) {
-                    cout << temp->Get_dato();
+                if (temp->Get_numero() == 10) {
+                    cout << "--- ";
                 } else {
-                    cout << temp->Get_dato() << " ";
+                    cout << "--- ";
                 }
 
             }
@@ -61,7 +61,7 @@ void CartasPantalla::mostrarTablero2(Carta *&frente, Carta *&fin, Carta *actual,
         temp = frente;
         while (temp != NULL) {
             if (temp == fin) {
-                if (temp->Get_numero() > 9) {
+                if (temp->Get_numero() == 10) {
                     cout << temp->Get_dato();
                 } else {
                     cout << temp->Get_dato() << " ";
@@ -83,7 +83,7 @@ void CartasPantalla::mostrarPilasFinales(Carta *&pila) {
         temp = pila;
         while (temp != NULL) {
             if (temp == pila) {
-                if (temp->Get_numero() > 9) {
+                if (temp->Get_numero() == 10) {
                     cout << temp->Get_dato();
                 } else {
                     cout << temp->Get_dato() + " ";

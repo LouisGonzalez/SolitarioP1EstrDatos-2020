@@ -22,31 +22,31 @@ ListasDobles::ListasDobles() {
     ultimo = NULL;
 }
 
-void ListasDobles::Set_primero(Carta* P){
+void ListasDobles::Set_primero(Carta* P) {
     primero = P;
 }
 
-Carta* ListasDobles::Get_primero(){
+Carta* ListasDobles::Get_primero() {
     return primero;
 }
 
-void ListasDobles::Set_ultimo(Carta* U){
+void ListasDobles::Set_ultimo(Carta* U) {
     ultimo = U;
 }
 
-Carta* ListasDobles::Get_ultimo(){
+Carta* ListasDobles::Get_ultimo() {
     return ultimo;
 }
 
-void ListasDobles::insertarCarta(Carta *&primero, Carta *&ultimo, int id, int numero, string simbolo, string dato, string bandera){
+void ListasDobles::insertarCarta(Carta *&primero, Carta *&ultimo, int id, int numero, string simbolo, string dato, string bandera) {
     Carta* carta = new Carta();
     carta->Set_id(id);
     carta->Set_numero(numero);
     carta->Set_simbolo(simbolo);
     carta->Set_dato(dato);
     carta->Set_bandera(bandera);
-    if(primero == NULL){
-        primero = carta;    
+    if (primero == NULL) {
+        primero = carta;
         primero->Set_siguiente(NULL);
         primero->Set_anterior(NULL);
         ultimo = primero;
@@ -58,85 +58,105 @@ void ListasDobles::insertarCarta(Carta *&primero, Carta *&ultimo, int id, int nu
     }
 }
 
-void ListasDobles::desplegarListaPU(Carta *&primero,  int i){
+void ListasDobles::desplegarListaPU(Carta *&primero, int i) {
     Carta* actual = new Carta();
     actual = primero;
-    if(primero!=NULL){
+    if (primero != NULL) {
         while (actual != NULL) {
             int espacio;
-                espacio = i * 10;
-                for(int j = 0; j < espacio; j++){
-                    printf(" ");
-                }
-                cout<<actual->Get_dato()<<endl;
-                actual = actual->Get_siguiente();                   
+            espacio = i * 10;
+            for (int j = 0; j < espacio; j++) {
+                printf(" ");
+            }
+            cout << actual->Get_dato() << endl;
+            actual = actual->Get_siguiente();
         }
     } else {
-        cout<<"La lista se encuentra vacia\n\n"<<endl;
+        cout << "La lista se encuentra vacia\n\n" << endl;
     }
 }
 
-Carta* ListasDobles::mostrarCartas(Carta *&primero, Carta *&ultimo, Carta *actual, int i, int j){
+Carta* ListasDobles::mostrarCartas(Carta *&primero, Carta *&ultimo, Carta *actual, int i, int j) {
     int espacio;
-    if(primero!=NULL){
-    ultimo->Set_bandera("SI");
-        if(actual != NULL) {
-                espacio = i * 3;
-                for (int j = 0; j < espacio; j++) {
-                    printf(" ");
-                }
-                if (actual->Get_numero() > 9) {
-                    if (actual->Get_bandera() == "SI") {
-                        cout << actual->Get_dato();
-                    } else {
-                        cout << "xxx ";
-                    }
+    if (primero != NULL) {
+        ultimo->Set_bandera("SI");
+        if (actual != NULL) {
+            espacio = i * 3;
+            for (int j = 0; j < espacio; j++) {
+                printf(" ");
+            }
+            if (actual->Get_numero() == 10) {
+                if (actual->Get_bandera() == "SI") {
+                    cout << actual->Get_dato();
                 } else {
-                    if (actual->Get_bandera() == "SI") {
-                        cout << actual->Get_dato() << " ";
-                    } else {
-                        cout << "xxx ";
-                    }
+                    cout << "xxx ";
                 }
-            actual = actual->Get_siguiente(); 
+            } else {
+                if (actual->Get_bandera() == "SI") {
+                    cout << actual->Get_dato() << " ";
+                } else {
+                    cout << "xxx ";
+                }
+            }
+            actual = actual->Get_siguiente();
         } else {
             espacio = i * 3;
-            for(int j = 0; j < espacio; j++){
+            for (int j = 0; j < espacio; j++) {
                 printf(" ");
-            } 
-            cout<<"    ";
+            }
+            cout << "    ";
         }
-    } else if(primero==NULL){
+    } else if (primero == NULL) {
         actual = NULL;
-            espacio = i * 3;
-            for(int j = 0; j < espacio; j++){
-                printf(" ");
-            } 
-            cout<<"    ";
-        
+        espacio = i * 3;
+        for (int j = 0; j < espacio; j++) {
+            printf(" ");
+        }
+        cout << "    ";
+
     }
     return actual;
 }
 
-void ListasDobles::despleagarListaUP(Carta *&primero, Carta*&ultimo){
+void ListasDobles::despleagarListaUP(Carta *&primero, Carta*&ultimo) {
     Carta* actual = new Carta();
     actual = ultimo;
-    if(primero!=NULL){
-        while(actual!=NULL){
-            cout<<actual->Get_id()<<" , "<<actual->Get_numero()<<" , "<<actual->Get_simbolo()<<"\n"<<endl;
+    if (primero != NULL) {
+        while (actual != NULL) {
+            cout << actual->Get_id() << " , " << actual->Get_numero() << " , " << actual->Get_simbolo() << "\n" << endl;
             actual = actual->Get_anterior();
         }
     } else {
-        cout<<"La lista se encuentra vacia\n\n"<<endl;
+        cout << "La lista se encuentra vacia\n\n" << endl;
     }
 }
-
-
-
 
 ListasDobles::ListasDobles(const ListasDobles& orig) {
 }
 
 ListasDobles::~ListasDobles() {
+    /*Carta *aux = new Carta();
+    Carta *aux2 = NULL;
+    aux = ultimo;
+    if (primero == ultimo) {
+        primero = ultimo = NULL;
+    } else {
+        while (primero != NULL) {
+            aux2 = aux;
+            ultimo = ultimo->Get_anterior();
+            ultimo->Set_siguiente(NULL);
+            delete aux2;
+
+        }
+    }*/
+    while(primero->Get_siguiente() != ultimo){
+        Carta *aux = primero->Get_siguiente()->Get_siguiente();
+        delete primero->Get_siguiente();
+        primero->Set_siguiente(aux);
+        aux->Set_anterior(primero);
+    }
+    delete primero;
+    delete ultimo;
+    
 }
 
